@@ -9,14 +9,6 @@ internal class NESTestExplorer
 {
     static async Task<int> Main(string[] args)
     {
-        if (args.Length == 0)
-        {
-            args = [
-                @"mesen --testrunner E:\dev\Programming\NES\nespad\build\Nespad.nes E:\dev\Programming\NES\nespad/scripts/tests/tests_adapter.lua",
-                @"E:\dev\Programming\NES\nespad\src\tests\tests.s",
-            ];
-        }
-
         string startSenderCommand = args[0];
         string testsFilePath = args[1];
 
