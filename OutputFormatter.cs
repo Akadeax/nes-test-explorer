@@ -14,7 +14,7 @@ internal class OutputFormatter
             Console.WriteLine("".PadRight(PAD, PAD_CHAR));
             // === Category name (Nr. index):\n
             Console.Write("==== Category ");
-            Formatting.WriteInColor($"{category.Name} (Nr. {categoryIndex + 1})", ConsoleColor.Cyan);
+            Formatting.WriteInColor($"{category.Name} (Nr. {categoryIndex + 1}), line {category.Line}", ConsoleColor.Cyan);
             Console.WriteLine(":");
 
             foreach (TestCase testCase in category.Cases)
@@ -30,7 +30,7 @@ internal class OutputFormatter
                     Formatting.WriteInColor($"{testCase.SucceededAmount} Succeeded", ConsoleColor.Green);
                     Console.Write(", ");
                     Formatting.WriteInColor($"{testCase.FailedAmount} Failed", ConsoleColor.Red);
-                    Console.WriteLine("):");
+                    Console.WriteLine($"), starts at line {testCase.Line}:");
 
                     foreach ((bool check, int checkIndex) in testCase.Checks.WithIndex())
                     {

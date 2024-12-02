@@ -4,6 +4,7 @@ internal class Category
 {
     public List<TestCase> Cases = [];
     public string Name = "";
+    public int Line = -1;
 
     public int SucceededAmount => Cases.Sum(c => c.SucceededAmount);
     public int FailedAmount => Cases.Sum(c => c.FailedAmount);

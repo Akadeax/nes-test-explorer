@@ -25,8 +25,8 @@ internal class NESTestExplorer
 
         await Task.WhenAll(receiverTask, parserTask);
 
-        var categoryList = await receiverTask;
-        var nameList = await parserTask;
+        List<Category> categoryList = await receiverTask;
+        List<(string, int)> nameList = await parserTask;
 
         int totalNamesRequired = categoryList.Sum(cat => cat.Cases.Count) + categoryList.Count;
 
@@ -39,11 +39,15 @@ internal class NESTestExplorer
         int nameIndex = 0;
         foreach (Category cat in categoryList)
         {
-            cat.Name = nameList[nameIndex++];
+            cat.Name = nameList[nameIndex].Item1;
+            cat.Line = nameList[nameIndex].Item2;
+            nameIndex++;
 
             foreach (TestCase currentCase in cat.Cases)
             {
-                currentCase.Name = nameList[nameIndex++];
+                currentCase.Name = nameList[nameIndex].Item1;
+                currentCase.Line = nameList[nameIndex].Item2;
+                nameIndex++;
             }
         }
 

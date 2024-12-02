@@ -4,6 +4,7 @@ internal class TestCase
 {
     public List<bool> Checks = [];
     public string Name = "";
+    public int Line = -1;
 
     public TestCase() { }
 

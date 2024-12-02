@@ -2,7 +2,7 @@
 
 public class TestsFileParser
 {
-    public static async Task<List<string>> ReadAndParse(string testsFilePath)
+    public static async Task<List<(string, int)>> ReadAndParse(string testsFilePath)
     {
         string[] fileLines;
         try
@@ -15,7 +15,7 @@ public class TestsFileParser
             return [];
         }
 
-        List<string> names = [];
+        List<(string, int)> names = [];
 
         foreach (var (line, index) in fileLines.WithIndex())
         {
@@ -33,7 +33,7 @@ public class TestsFileParser
             }
 
             string currentName = lineTrim[(firstSemicolonIndex + 1)..].Trim();
-            names.Add(currentName);
+            names.Add((currentName, index + 1));
         }
 
         return names;
