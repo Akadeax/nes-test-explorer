@@ -73,9 +73,16 @@ internal class TestDataReceiver
         {
             throw new ArgumentException("Test data not found!");
         }
+
+        // Account for leading 0s caused by memory clears prior to running tests
+        while (totalTestOutput[0] == '0')
+        {
+            totalTestOutput = totalTestOutput[1..];
+        }
+
         if (totalTestOutput[0] != Constants.SENDER_VAL_CATEGORY)
         {
-            throw new ArgumentException("Test data does not start with category!");
+            throw new ArgumentException($"Test data does not start with category! Data: {totalTestOutput}");
         }
 
         return totalTestOutput[1..];
